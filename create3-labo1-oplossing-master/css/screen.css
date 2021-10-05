@@ -530,6 +530,14 @@ input::placeholder {
     fill: var(--color-alpha-x-dark);
 }
 
+@media (prefers-color-scheme: dark) {
+    .c-logo__path--1,
+    .c-logo__path--2,
+    .c-logo__path--3{
+        fill: var(--global-color-neutral-xxxx-light);
+    }
+}
+
 /*
     Component: Card
     ---
@@ -721,10 +729,69 @@ input::placeholder {
     background-color: white;
     content: '';
     transition: all var(--transition-alpha);
+    animation: slide_left 1s;
 }
 
-.c-custom-toggle__fake-input:checked + .c-custom-toggle .c-custom-toggle__fake-input{
-    transform: translateX(22px);
+.c-option-move:checked + .c-custom-toggle .c-custom-toggle__fake-input::after{
+    transform: translateX(24px);
+    animation: slide_right 1s;
+}
+
+.c-option-move:checked + .c-custom-toggle .c-custom-toggle__fake-input{
+    background-color: #3385FF;
+    border-color: #2E77E6;
+}
+
+.c-option-move:focus + .c-custom-toggle .c-custom-toggle__fake-input{
+    box-shadow: var(--global-input-boxShadow);
+    border-color: var(--global-input-focus-borderColor);
+}
+
+.c-option-move:active + .c-custom-toggle .c-custom-toggle__fake-input::after{
+    animation: slide_right 4s;
+}
+
+@keyframes slide_right {
+    0% {
+        transform: translateX(0px);
+        width: 22px;
+    }
+    50%{
+        width: 25px;
+    }
+    100% {
+        width: 22px;
+    }
+}
+
+@keyframes slide_left {
+    0% {
+        transform: translateX(24px);
+        width: 22px;
+    }
+    50%{
+        width: 25px;
+    }
+    100% {
+        width: 22px;
+    }
+}
+
+.c-toggle__label--inverted{
+    display: flexbox;
+    flex-direction: row-reverse;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.c-custom-select__input{
+    border: 1px solid #E2E3E7;
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        background-color: var(--global-color-neutral-xxxx-dark);
+    }
 }
 
 /*
@@ -743,8 +810,23 @@ input::placeholder {
     color: var(--global-color-neutral-xx-dark);
 }
 
+.c-custom-select{
+    margin-left: 7px;
+}
+
+.c-custom-select__symbol{
+    fill: #B5B6C0;
+    position: absolute;
+    margin: -35px 300px;
+
+}
+
 .c-label--option {
     padding-bottom: 0;
+}
+
+.c-custom-select__input{
+    margin-top: 8px;
 }
 
 /*
