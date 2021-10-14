@@ -84,35 +84,4 @@
         </div>
     </section>
 </body>
-    <script type="text/javascript">      
-    let button  = document.querySelector('.js-save');
-    let form = document.querySelector('.js-form');
-
-    button.addEventListener('click',function(e){
-        var json = {
-            "LastName": document.getElementById("name").value,
-            "FirstName": document.getElementById("firstname").value,
-            "Email": document.getElementById("email").value,
-            "Zipcode": document.getElementById("zipcode").value,
-            "Age": parseInt(document.getElementById("age").value),
-            "IsFirstTimer": (document.getElementById("isFirstTimer").value == 'on' ? true : false)
-        };
-        postData(json);
-        form.reset();
-    });
-
-    function postData(data) {
-        var url = 'https://functionappjonas.azurewebsites.net/api/v2/registrations';
-
-        fetch(url, {
-            method: 'POST', // or 'PUT'
-            body: JSON.stringify(data), // data can be `string` or {object}!
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(res => res.json())
-            .then(response => console.log('Success:', JSON.stringify(response)))
-            .catch(error => console.error('Error:', error));
-    }
-</script>
 </html>
